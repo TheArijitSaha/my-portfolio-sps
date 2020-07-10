@@ -1,9 +1,107 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ruda:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+
+/* For full body element */
+body {
+  background-color: #181818;
+  margin: 0;
 }
 
-#greeting-container {
-  margin-top: 20px;
+/* For topnav */
+
+div.topnav {
+  width: 70%;
+  margin: auto;
+  padding: 10px 0 0 0;
+  overflow: hidden;
+  font-family: 'Teko', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+div.topnav div.brand a {
+  font-size: 30px;
+  text-decoration: none;
+  color: white;
+}
+
+div.topnav div.navlinks {
+  width: 30%;
+  float: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+div.topnav div.navlinks div a {
+  color: #A5A5A5;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+div.topnav div.navlinks div a:hover {
+  color: #757575;
+}
+
+/* For introDiv */
+
+div.introDiv {
+  padding-top: 40px;
+  width: 100%;
+}
+
+div.introDiv img {
+  position: absolute;
+  top: 10 px;
+  left: 52%;
+  opacity: 0.8;
+}
+
+div.introDiv div.introText {
+  z-index: 1;
+  position: absolute;
+  left: 15%;
+  width: 50%;
+  top: 30%;
+}
+
+div.introDiv div.introText p.primary {
+  color: #FFF;
+  font-size: 50px;
+  font-family: 'Ruda', sans-serif;
+}
+
+div.introDiv div.introText p.secondary {
+  color: gray;
+  font-size: 25px;
+  width: 74%;
+  font-family: 'Roboto Slab', serif;
+}
+
+div.introDiv div.introText hr.line {
+  width: 30%;
+  margin: 0;
+}
+
+div.introDiv div.mediaLinks {
+  position: absolute;
+  left: 15%;
+  width: 37%;
+  top: 23%;
+}
+
+div.introDiv div.mediaLinks a.linkIcon {
+  text-decoration: none;
+  padding: 15px;
+  font-size: 23px;
+  color: #555;
+  transition-duration: 300ms;
+}
+
+div.introDiv div.mediaLinks a.linkIcon:hover {
+  font-size: 30px;
+  padding: 8px 13px;
+}
+

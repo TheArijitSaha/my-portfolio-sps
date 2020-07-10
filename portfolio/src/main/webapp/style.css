@@ -13,6 +13,12 @@ div.introDiv {
   width: 100%;
 }
 
+div.introDiv img {
+  position: absolute;
+  top: 10 px;
+  left: 52%;
+}
+
 div.introDiv div.introText {
   z-index: 1;
   position: absolute;

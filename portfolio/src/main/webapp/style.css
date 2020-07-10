@@ -41,6 +41,11 @@ div.topnav div.navlinks div a {
   font-size: 20px;
 }
 
+div.topnav div.navlinks div a.active {
+  color: #757575;
+  border-top: 3px solid #757575;
+}
+
 div.topnav div.navlinks div a:hover {
   color: #757575;
 }

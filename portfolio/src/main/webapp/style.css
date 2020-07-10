@@ -1,9 +1,41 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+@import url('https://fonts.googleapis.com/css2?family=Ruda:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+
+body {
+  background-color: #181818;
+  margin: 0;
 }
 
-#greeting-container {
-  margin-top: 20px;
+/* For introDiv */
+
+div.introDiv {
+  padding-top: 40px;
+  width: 100%;
 }
+
+div.introDiv div.introText {
+  z-index: 1;
+  position: absolute;
+  left: 15%;
+  width: 50%;
+  top: 30%;
+}
+
+div.introDiv div.introText p.primary {
+  color: #FFF;
+  font-size: 50px;
+  font-family: 'Ruda', sans-serif;
+}
+
+div.introDiv div.introText p.secondary {
+  color: gray;
+  font-size: 25px;
+  width: 74%;
+  font-family: 'Roboto Slab', serif;
+}
+
+div.introDiv div.introText hr.line {
+  width: 30%;
+  margin: 0;
+}
+

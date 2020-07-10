@@ -1,3 +1,4 @@
+/* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ruda:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
@@ -40,6 +41,10 @@ div.topnav div.navlinks div a {
   font-size: 20px;
 }
 
+div.topnav div.navlinks div a:hover {
+  color: #757575;
+}
+
 /* For introDiv */
 
 div.introDiv {
@@ -51,6 +56,7 @@ div.introDiv img {
   position: absolute;
   top: 10 px;
   left: 52%;
+  opacity: 0.8;
 }
 
 div.introDiv div.introText {
@@ -77,5 +83,25 @@ div.introDiv div.introText p.secondary {
 div.introDiv div.introText hr.line {
   width: 30%;
   margin: 0;
+}
+
+div.introDiv div.mediaLinks {
+  position: absolute;
+  left: 15%;
+  width: 37%;
+  top: 23%;
+}
+
+div.introDiv div.mediaLinks a.linkIcon {
+  text-decoration: none;
+  padding: 15px;
+  font-size: 23px;
+  color: #555;
+  transition-duration: 300ms;
+}
+
+div.introDiv div.mediaLinks a.linkIcon:hover {
+  font-size: 30px;
+  padding: 8px 13px;
 }
 

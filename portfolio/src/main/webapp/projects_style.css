@@ -1,9 +1,9 @@
-/*Project Panes */
+/* Project Panes */
 
 div.projectPane {
   position: relative;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   margin-left: 13%;
   margin-right: 13%;
   height: 85vh;
@@ -17,7 +17,7 @@ div.projectPane {
 }
 
 div.topnav {
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
 
 div.projectPane:focus,
@@ -88,5 +88,9 @@ div.projectPane div.content p {
 
 div.graphTextImg::before {
   background-image: url("images/graphTextImg.png");
+}
+
+div.IIESTNexusImg::before {
+  background-image: url("images/IIESTNexusImg.png");
 }
 

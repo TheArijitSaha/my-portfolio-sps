@@ -96,6 +96,10 @@ div.graphTextImg::before {
   background-image: url("images/graphTextImg.png");
 }
 
+div.MyMDbImg::before {
+  background-image: url("images/MyMDbImg.png");
+}
+
 div.IIESTNexusImg::before {
   background-image: url("images/IIESTNexusImg.png");
 }

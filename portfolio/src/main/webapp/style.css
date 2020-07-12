@@ -39,6 +39,13 @@ div.topnav div.navlinks div a {
   color: #A5A5A5;
   text-decoration: none;
   font-size: 20px;
+  padding-top: 3px;
+}
+
+div.topnav div.navlinks div a.active {
+  color: #757575;
+  border-top: 3px solid #757575;
+  border-bottom: 3px solid #757575;
 }
 
 div.topnav div.navlinks div a:hover {

@@ -1,0 +1,110 @@
+/* Project Panes */
+
+div.projectPane {
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 13%;
+  margin-right: 13%;
+  height: 85vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 7%;
+  padding-right: 7%;
+  transition-duration: 500ms;
+}
+
+div.topnav {
+  margin-bottom: 30px;
+}
+
+div.projectPane:focus,
+div.projectPane:hover {
+  background-color: rgba(24, 24, 24, 0.7);
+}
+
+div.projectPane::before {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  content: "";
+  opacity: 0.75;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  transition-duration: 500ms;
+}
+
+div.projectPane:focus::before,
+div.projectPane:hover::before {
+  transform: scale(1.1, 1.1);
+}
+
+div.projectPane div.header,
+div.projectPane div.content {
+  opacity: 0;
+  transition-duration: 500ms;
+}
+
+div.projectPane:hover div.header,
+div.projectPane:hover div.content,
+div.projectPane:focus div.header,
+div.projectPane:focus div.content {
+  opacity: 1;
+}
+
+div.projectPane div.header span.link a {
+  color: #E2CCCA;
+  font-family: 'Ruda', sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+div.projectPane div.header span.date {
+  color: white;
+  font-family: 'Ruda', sans-serif;
+  font-size: 30px;
+}
+
+div.projectPane div.header span.name {
+  font-weight: bold;
+  color: white;
+  font-family: 'Ruda', sans-serif;
+  font-size: 50px;
+}
+
+div.projectPane div.content p {
+  font-family: 'Roboto Slab', serif;
+  font-size: 30px;
+  color: white;
+}
+
+div.projectPane div.content ul {
+  font-family: 'Roboto Slab', serif;
+  font-size: 24px;
+  color: white;
+}
+
+/* Project background images */
+
+div.graphTextImg::before {
+  background-image: url("images/graphTextImg.png");
+}
+
+div.MyMDbImg::before {
+  background-image: url("images/MyMDbImg.png");
+}
+
+div.IIESTNexusImg::before {
+  background-image: url("images/IIESTNexusImg.png");
+}
+
+div.crioCertImg::before {
+  background-image: url("images/crioCertImg.png");
+}
+

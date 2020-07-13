@@ -57,21 +57,24 @@ div.topnav div.navlinks div a:hover {
 div.introDiv {
   padding-top: 40px;
   width: 100%;
+  position: relative;
+  height: 600px;
+  padding-bottom: 40px;
 }
 
 div.introDiv img {
   position: absolute;
-  top: 10 px;
+  top: 40px;
   left: 52%;
   opacity: 0.8;
 }
 
 div.introDiv div.introText {
   z-index: 1;
-  position: absolute;
+  position: relative;
   left: 15%;
   width: 50%;
-  top: 30%;
+  top: 40px;
 }
 
 div.introDiv div.introText p.primary {
@@ -93,10 +96,10 @@ div.introDiv div.introText hr.line {
 }
 
 div.introDiv div.mediaLinks {
-  position: absolute;
+  position: relative;
   left: 15%;
   width: 37%;
-  top: 23%;
+  top: 55px;
 }
 
 div.introDiv div.mediaLinks a.linkIcon {

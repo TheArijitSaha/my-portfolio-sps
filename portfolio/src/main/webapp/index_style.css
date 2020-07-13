@@ -1,0 +1,39 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Ruda:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+
+/* Competitive Profile Div */
+div.CPDiv {
+  width: 80%;
+  position: relative;
+  left: 10%;
+}
+
+div.CPDiv div.CPHeader {
+  position: relative;
+  left: 10%;
+  width: 80%;
+  text-align: center;
+}
+
+div.CPDiv div.CPHeader p.CPIntro{
+  color: #AF9D9D;
+  font-family: 'Ruda', sans-serif;
+  font-size: 30px;
+  padding: 20px;
+}
+
+div.CPDiv div.CPProfile {
+  display: flex;
+  justify-content: center;
+}
+
+div.CPDiv div.CPProfile a.CPLink {
+  width: 25%;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: gray;
+  font-family: 'Roboto Slab', serif;
+}
+

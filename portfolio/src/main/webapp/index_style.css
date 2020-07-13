@@ -2,27 +2,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Ruda:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 
-/* Competitive Profile Div */
-div.CPDiv {
+/* Generic Information Div Styles */
+
+div.infoDiv {
   width: 80%;
   position: relative;
   left: 10%;
   margin-bottom: 30px;
 }
 
-div.CPDiv div.CPHeader {
+div.infoDiv div.infoHeader {
   position: relative;
   left: 10%;
   width: 80%;
   text-align: center;
 }
 
-div.CPDiv div.CPHeader p.CPIntro{
+div.infoDiv div.infoHeader p.infoIntro{
   color: #AF9D9D;
   font-family: 'Ruda', sans-serif;
   font-size: 30px;
   padding: 20px;
 }
+
+/* CP Div Styles */
 
 div.CPDiv div.CPProfile {
   display: flex;
@@ -69,5 +72,88 @@ div.CPDiv div.CPImage::before {
   bottom: 0;
   right: 0;
   z-index: -1;
+}
+
+/* Internship Styles */
+
+div.projectPane {
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 13%;
+  margin-right: 13%;
+  height: 65vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 7%;
+  padding-right: 7%;
+  transition-duration: 500ms;
+  background-color: rgba(24, 24, 24, 0.7);
+}
+
+div.projectPane::before {
+  background-position: center;
+  background-repeat: no-repeat;
+  content: "";
+  opacity: 0.75;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+div.projectPane div.header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+div.projectPane div.header span.link {
+  color: #E2CCCA;
+  font-family: 'Ruda', sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+div.projectPane div.header span.date {
+  color: white;
+  font-family: 'Ruda', sans-serif;
+  font-size: 30px;
+}
+
+div.projectPane div.header span.name {
+  font-weight: bold;
+  color: white;
+  font-family: 'Ruda', sans-serif;
+  font-size: 50px;
+}
+
+div.projectPane div.content p {
+  font-family: 'Roboto Slab', serif;
+  font-size: 30px;
+  color: white;
+}
+
+div.projectPane div.content ul {
+  font-family: 'Roboto Slab', serif;
+  font-size: 24px;
+  color: white;
+}
+
+/* Project background images */
+
+div.MSLogoImg::before {
+  background-image: url("images/MSLogoImg.jpg");
+  background-size: cover;
+}
+
+div.ISILogoImg::before {
+  background-image: url("images/ISILogoImg.png");
+  background-size: 300px;
 }
 

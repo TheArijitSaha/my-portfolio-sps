@@ -7,6 +7,7 @@ div.CPDiv {
   width: 80%;
   position: relative;
   left: 10%;
+  margin-bottom: 30px;
 }
 
 div.CPDiv div.CPHeader {
@@ -35,5 +36,38 @@ div.CPDiv div.CPProfile a.CPLink {
   text-decoration: none;
   color: gray;
   font-family: 'Roboto Slab', serif;
+}
+
+div.CPDiv div.CPImage {
+  height: 80vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+div.CPDiv div.CPImage a {
+  text-decoration: none;
+}
+
+div.CPDiv div.CPImage a p {
+  font-size: 40px;
+  padding: 25%;
+  color: white;
+}
+
+div.CPDiv div.CPImage::before {
+  background-image: url('images/ICPCImg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  content: "";
+  opacity: 0.5;
+  position: absolute;
+  top: 250px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
 }
 

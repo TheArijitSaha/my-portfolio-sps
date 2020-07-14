@@ -23,21 +23,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns comments data */
+/* Servlet that returns comments data */
 @WebServlet("/comments")
 public class DataServlet extends HttpServlet {
-  private List<String> text;
+  private List<String> comments;
 
   @Override
   public void init() {
-    text = new ArrayList<>();
+    comments = new ArrayList<>();
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Convert comments data to JSON
     Gson gson = new Gson();
-    String json = gson.toJson(text);
+    String json = gson.toJson(comments);
 
     // Send the JSON as the response
     response.setContentType("application/json;");
@@ -51,7 +51,7 @@ public class DataServlet extends HttpServlet {
 
     // Add to comments if the string has posiive length
     if (commentText.length() > 0) {
-      text.add(commentText);
+      comments.add(commentText);
     }
 
     // Redirect back to the HTML page.

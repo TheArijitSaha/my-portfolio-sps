@@ -31,18 +31,42 @@ public class DataServlet extends HttpServlet {
   @Override
   public void init() {
     text = new ArrayList<>();
-    text.add("Line #1");
-    text.add("Line #2");
-    text.add("Line #3");
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Convert comments data to JSON
     Gson gson = new Gson();
     String json = gson.toJson(text);
 
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String commentText = getParameter(request, "comment", "");
+
+    // Add to comments if the string has posiive length
+    if (commentText.length() > 0) {
+      text.add(commentText);
+    }
+
+    // Redirect back to the HTML page.
+    response.sendRedirect("/index.html");
+  }
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
   }
 }

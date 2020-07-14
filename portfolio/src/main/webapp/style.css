@@ -115,3 +115,27 @@ div.introDiv div.mediaLinks a.linkIcon:hover {
   padding: 8px 13px;
 }
 
+/* For fetchDiv */
+
+div.fetchDiv {
+  margin-left: 10%;
+  margin-right: 10%;
+  padding-left: 7%;
+  padding-right: 7%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+div.fetchDiv p.header {
+  color: white;
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+div.fetchDiv p.info {
+  color: white;
+  font-size: 30px;
+  margin: 5px 0;
+}
+

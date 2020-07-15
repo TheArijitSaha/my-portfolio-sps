@@ -115,9 +115,9 @@ div.introDiv div.mediaLinks a.linkIcon:hover {
   padding: 8px 13px;
 }
 
-/* For fetchDiv */
+/* For Comments */
 
-div.fetchDiv {
+div.commentDiv {
   margin-left: 10%;
   margin-right: 10%;
   padding-left: 7%;
@@ -127,15 +127,17 @@ div.fetchDiv {
   flex-direction: column;
 }
 
-div.fetchDiv p.header {
+div.commentDiv p.header {
+  color: white;
+  font-size: 25px;
+  margin: 5px 0;
+}
+
+div.commentDiv ul.commentList {
+  margin: 5px 0;
+}
+
+div.commentDiv ul.commentList li.commentItem {
   color: white;
   font-size: 20px;
-  margin: 5px 0;
 }
-
-div.fetchDiv p.info {
-  color: white;
-  font-size: 30px;
-  margin: 5px 0;
-}
-

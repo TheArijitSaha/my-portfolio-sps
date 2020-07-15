@@ -14,6 +14,12 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,22 +32,27 @@ import javax.servlet.http.HttpServletResponse;
 /* Servlet that returns comments data */
 @WebServlet("/comments")
 public class DataServlet extends HttpServlet {
-  private List<String> comments;
-
-  @Override
-  public void init() {
-    comments = new ArrayList<>();
-  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Convert comments data to JSON
-    Gson gson = new Gson();
-    String json = gson.toJson(comments);
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.ASCENDING);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    List<String> comments = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      String commentText = (String) entity.getProperty("text");
+      long timestamp = (long) entity.getProperty("timestamp");
+
+      comments.add(commentText);
+    }
 
     // Send the JSON as the response
+    Gson gson = new Gson();
     response.setContentType("application/json;");
-    response.getWriter().println(json);
+    response.getWriter().println(gson.toJson(comments));
   }
 
   @Override
@@ -49,9 +60,18 @@ public class DataServlet extends HttpServlet {
     // Get the input from the form.
     String commentText = getParameter(request, "comment", "");
 
-    // Add to comments if the string has posiive length
+    // Add comment to datastore if the string has positive length
     if (commentText.length() > 0) {
-      comments.add(commentText);
+      long timestamp = System.currentTimeMillis();
+
+      // Form Entity
+      Entity taskEntity = new Entity("Comment");
+      taskEntity.setProperty("text", commentText);
+      taskEntity.setProperty("timestamp", timestamp);
+
+      // Store in Datastore
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      datastore.put(taskEntity);
     }
 
     // Redirect back to the HTML page.

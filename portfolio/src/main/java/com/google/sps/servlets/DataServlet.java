@@ -14,6 +14,9 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,22 +29,16 @@ import javax.servlet.http.HttpServletResponse;
 /* Servlet that returns comments data */
 @WebServlet("/comments")
 public class DataServlet extends HttpServlet {
-  private List<String> comments;
-
-  @Override
-  public void init() {
-    comments = new ArrayList<>();
-  }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Convert comments data to JSON
-    Gson gson = new Gson();
+    /* Gson gson = new Gson();
     String json = gson.toJson(comments);
 
     // Send the JSON as the response
     response.setContentType("application/json;");
-    response.getWriter().println(json);
+    response.getWriter().println(json); */
   }
 
   @Override
@@ -49,9 +46,18 @@ public class DataServlet extends HttpServlet {
     // Get the input from the form.
     String commentText = getParameter(request, "comment", "");
 
-    // Add to comments if the string has posiive length
+    // Add comment to datastore if the string has positive length
     if (commentText.length() > 0) {
-      comments.add(commentText);
+      long timestamp = System.currentTimeMillis();
+
+      // Form Entity
+      Entity taskEntity = new Entity("Comment");
+      taskEntity.setProperty("text", commentText);
+      taskEntity.setProperty("timestamp", timestamp);
+
+      // Store in Datastore
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      datastore.put(taskEntity);
     }
 
     // Redirect back to the HTML page.

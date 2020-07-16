@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /* Servlet that returns comments data */
 @WebServlet("/comments")
-public class DataServlet extends HttpServlet {
+public class CommentsServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

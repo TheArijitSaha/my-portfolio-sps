@@ -43,7 +43,7 @@ public class UserServlet extends HttpServlet {
       JsonObject json = new JsonObject();
       Gson gson = new Gson();
       json.addProperty("isLoggedIn", true);
-      json.add("user", gson.toJsonTree(user));
+      json.add("userDetail", gson.toJsonTree(user));
       json.addProperty("logoutUrl", logoutUrl);
 
       response.getWriter().println(json.toString());

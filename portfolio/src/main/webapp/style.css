@@ -135,21 +135,34 @@ div.commentDiv p.header {
   margin: 5px 0;
 }
 
-div.commentDiv ul.commentList {
+div.commentDiv div.commentListDiv {
   margin: 5px 0;
-  list-style: none;
   padding: 0;
 }
 
-div.commentDiv ul.commentList li.commentItem {
-  font-family: 'Ruda', sans-serif;
-  color: white;
-  font-size: 16px;
+div.commentDiv div.commentListDiv div.commentItemDiv {
   padding: 10px;
   margin: 2px;
   display: block;
   border-radius: 5px;
   background-color: gray;
+}
+
+div.commentDiv div.commentListDiv div.commentItemDiv p.text {
+  font-family: 'Ruda', sans-serif;
+  color: white;
+  font-size: 16px;
+  padding: 5px;
+  margin: 0;
+}
+
+div.commentDiv div.commentListDiv div.commentItemDiv p.userEmail {
+  font-family: 'Ruda', sans-serif;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
 }
 
 div.commentDiv form {

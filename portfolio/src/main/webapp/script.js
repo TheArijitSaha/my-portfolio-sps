@@ -5,6 +5,9 @@ const commentUnorderedListClassName = 'commentList';
 const commentListItemClassName = 'commentItem';
 const commentSubmitButtonClassName = 'commentSubmit';
 const commentTextInputClassName = 'commentInput';
+const loginDivClassName = 'loginDiv';
+const loginDisclaimerParaClassName = 'loginDisclaimer';
+const loginButtonClassName = 'loginButton';
 /* URLs */
 const commentsURL = 'comments';
 
@@ -39,7 +42,7 @@ function loadCommentForm() {
     if (user.isLoggedIn) {
       addCommentFormToDOM(user);
     } else {
-      addSignInFormToDOM(user);
+      addSignInLinkToDOM(user);
     }
   });
 }
@@ -72,6 +75,33 @@ function addCommentFormToDOM(user) {
   /* Append form to comment div */
   document.querySelector('div.' + commentDivClassName)
           .appendChild(commentForm);
+}
+
+/*
+ * Function to add sign in link
+ */
+function addSignInLinkToDOM(user) {
+  if (user.isLoggedIn) return;
+
+  /* Make login Disclaimer p element */
+  let loginDisclaimer = document.createElement('p');
+  loginDisclaimer.className = loginDisclaimerParaClassName;
+  loginDisclaimer.innerText = 'Sign in to post comments';
+
+  /* Make Login Button  */
+  let loginButton = document.createElement('button');
+  loginButton.className = loginButtonClassName;
+  loginButton.innerHTML = '<a href=\"' + user.loginUrl + '\">Login</a>';
+
+  /* Wrap in a div element */
+  let loginDiv = document.createElement('div');
+  loginDiv.className = loginDivClassName;
+  loginDiv.appendChild(loginDisclaimer);
+  loginDiv.appendChild(loginButton);
+
+  /* Append form to comment div */
+  document.querySelector('div.' + commentDivClassName)
+          .appendChild(loginDiv);
 }
 
 /*

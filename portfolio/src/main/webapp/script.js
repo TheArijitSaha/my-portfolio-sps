@@ -3,6 +3,7 @@
 const commentDivClassName = 'commentDiv';
 const commentListDivClassName = 'commentListDiv';
 const commentItemDivClassName = 'commentItemDiv';
+const loggedInAsDisclaimerParaClassName = 'loggedInAsDisclaimer';
 const commentTextElementClassName = 'text';
 const commentUserEmailElementClassName = 'userEmail';
 const commentSubmitButtonClassName = 'commentSubmit';
@@ -70,6 +71,13 @@ function loadCommentForm() {
 function addCommentFormToDOM(user) {
   if (!user.isLoggedIn) return;
 
+  /* Make logged in as Disclaimer p element */
+  let loggedInAsDisclaimer = document.createElement('p');
+  loggedInAsDisclaimer.className = loggedInAsDisclaimerParaClassName;
+  loggedInAsDisclaimer.innerHTML = 'You are logged in as <strong>';
+  loggedInAsDisclaimer.innerHTML += user.userDetail.email;
+  loggedInAsDisclaimer.innerHTML += '<strong>. <a href =\"' + user.logoutUrl + '\">Log out</a>.';
+
   /* Make Text Area Element */
   let commentTextInput = document.createElement('textarea');
   commentTextInput.className = commentTextInputClassName;
@@ -86,6 +94,7 @@ function addCommentFormToDOM(user) {
   let commentForm = document.createElement('form');
   commentForm.method = 'POST';
   commentForm.action = commentsURL;
+  commentForm.appendChild(loggedInAsDisclaimer);
   commentForm.appendChild(commentTextInput);
   commentForm.appendChild(commentSubmitButton);
 

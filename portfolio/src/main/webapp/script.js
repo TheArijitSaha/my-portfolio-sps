@@ -1,8 +1,11 @@
 /* Constants */
 /* Class names */
 const commentDivClassName = 'commentDiv';
-const commentUnorderedListClassName = 'commentList';
-const commentListItemClassName = 'commentItem';
+const commentListDivClassName = 'commentListDiv';
+const commentItemDivClassName = 'commentItemDiv';
+const loggedInAsDisclaimerParaClassName = 'loggedInAsDisclaimer';
+const commentTextElementClassName = 'text';
+const commentUserEmailElementClassName = 'userEmail';
 const commentSubmitButtonClassName = 'commentSubmit';
 const commentTextInputClassName = 'commentInput';
 const loginDivClassName = 'loginDiv';
@@ -24,13 +27,28 @@ function getComments() {
  * Function to add comment elements to the DOM
  */
 function addCommentsToDOM(comments) {
-  let listHTML = '';
+  let commentList = document.querySelector('div.' + commentListDivClassName);
+  
   for (comment of comments) {
-    listHTML += '<li class=\"' + commentListItemClassName
-                + '\">' + comment + '</li>';
+    /* Make Text Element */
+    let commentTextElement = document.createElement('p');
+    commentTextElement.className = commentTextElementClassName;
+    commentTextElement.innerText = comment.text;
+
+    /* Make User Email Element  */
+    let commentUserEmailElement = document.createElement('p');
+    commentUserEmailElement.className = commentUserEmailElementClassName;
+    commentUserEmailElement.innerText = comment.userEmail;
+
+    /* Make Comment Item Div */
+    let commentItem = document.createElement('div');
+    commentItem.className = commentItemDivClassName;
+    commentItem.appendChild(commentUserEmailElement);
+    commentItem.appendChild(commentTextElement);
+
+    /* Append to Comment List */
+    commentList.appendChild(commentItem);
   }
-  document.querySelector('ul.' + commentUnorderedListClassName)
-          .innerHTML = listHTML;
 }
 
 /*
@@ -53,6 +71,13 @@ function loadCommentForm() {
 function addCommentFormToDOM(user) {
   if (!user.isLoggedIn) return;
 
+  /* Make logged in as Disclaimer p element */
+  let loggedInAsDisclaimer = document.createElement('p');
+  loggedInAsDisclaimer.className = loggedInAsDisclaimerParaClassName;
+  loggedInAsDisclaimer.innerHTML = 'You are logged in as <strong>';
+  loggedInAsDisclaimer.innerHTML += user.userDetail.email;
+  loggedInAsDisclaimer.innerHTML += '<strong>. <a href =\"' + user.logoutUrl + '\">Log out</a>.';
+
   /* Make Text Area Element */
   let commentTextInput = document.createElement('textarea');
   commentTextInput.className = commentTextInputClassName;
@@ -69,6 +94,7 @@ function addCommentFormToDOM(user) {
   let commentForm = document.createElement('form');
   commentForm.method = 'POST';
   commentForm.action = commentsURL;
+  commentForm.appendChild(loggedInAsDisclaimer);
   commentForm.appendChild(commentTextInput);
   commentForm.appendChild(commentSubmitButton);
 

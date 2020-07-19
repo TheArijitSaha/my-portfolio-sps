@@ -1,28 +1,140 @@
-// Copyright 2019 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/* Constants */
+/* Class names */
+const commentDivClassName = 'commentDiv';
+const commentListDivClassName = 'commentListDiv';
+const commentItemDivClassName = 'commentItemDiv';
+const loggedInAsDisclaimerParaClassName = 'loggedInAsDisclaimer';
+const commentTextElementClassName = 'text';
+const commentUserEmailElementClassName = 'userEmail';
+const commentSubmitButtonClassName = 'commentSubmit';
+const commentTextInputClassName = 'commentInput';
+const loginDivClassName = 'loginDiv';
+const loginDisclaimerParaClassName = 'loginDisclaimer';
+const loginButtonClassName = 'loginButton';
+/* URLs */
+const commentsURL = 'comments';
 
-/**
- * Adds a random greeting to the page.
+/*
+ * Function to fetch comments from the servlet
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+function getComments() {
+  fetch('/comments').then(response => response.json()).then(comments => {
+    addCommentsToDOM(comments);
+  });
+}
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+/*
+ * Function to add comment elements to the DOM
+ */
+function addCommentsToDOM(comments) {
+  let commentList = document.querySelector('div.' + commentListDivClassName);
+  
+  for (comment of comments) {
+    /* Make Text Element */
+    let commentTextElement = document.createElement('p');
+    commentTextElement.className = commentTextElementClassName;
+    commentTextElement.innerText = comment.text;
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+    /* Make User Email Element  */
+    let commentUserEmailElement = document.createElement('p');
+    commentUserEmailElement.className = commentUserEmailElementClassName;
+    commentUserEmailElement.innerText = comment.userEmail;
+
+    /* Make Comment Item Div */
+    let commentItem = document.createElement('div');
+    commentItem.className = commentItemDivClassName;
+    commentItem.appendChild(commentUserEmailElement);
+    commentItem.appendChild(commentTextElement);
+
+    /* Append to Comment List */
+    commentList.appendChild(commentItem);
+  }
+}
+
+/*
+ * Function to load comment form if user is signed in
+ * else load sign in form
+ */
+function loadCommentForm() {
+  fetch('/user').then(response => response.json()).then(user => {
+    if (user.isLoggedIn) {
+      addCommentFormToDOM(user);
+    } else {
+      addSignInLinkToDOM(user);
+    }
+  });
+}
+
+/*
+ * Function to add comment form
+ */
+function addCommentFormToDOM(user) {
+  if (!user.isLoggedIn) return;
+
+  /* Make logged in as Disclaimer p element */
+  let loggedInAsDisclaimer = document.createElement('p');
+  loggedInAsDisclaimer.className = loggedInAsDisclaimerParaClassName;
+  loggedInAsDisclaimer.innerHTML = 'You are logged in as <strong>';
+  loggedInAsDisclaimer.innerHTML += user.userDetail.email;
+  loggedInAsDisclaimer.innerHTML += '<strong>. <a href =\"' + user.logoutUrl + '\">Log out</a>.';
+
+  /* Make Text Area Element */
+  let commentTextInput = document.createElement('textarea');
+  commentTextInput.className = commentTextInputClassName;
+  commentTextInput.name = 'comment';
+  commentTextInput.placeholder = 'Penny for your thoughts';
+
+  /* Make Submit Button  */
+  let commentSubmitButton = document.createElement('input');
+  commentSubmitButton.className = commentSubmitButtonClassName;
+  commentSubmitButton.type = 'submit';
+  commentSubmitButton.value = 'Comment';
+
+  /* Make Comment Form */
+  let commentForm = document.createElement('form');
+  commentForm.method = 'POST';
+  commentForm.action = commentsURL;
+  commentForm.appendChild(loggedInAsDisclaimer);
+  commentForm.appendChild(commentTextInput);
+  commentForm.appendChild(commentSubmitButton);
+
+  /* Append form to comment div */
+  document.querySelector('div.' + commentDivClassName)
+          .appendChild(commentForm);
+}
+
+/*
+ * Function to add sign in link
+ */
+function addSignInLinkToDOM(user) {
+  if (user.isLoggedIn) return;
+
+  /* Make login Disclaimer p element */
+  let loginDisclaimer = document.createElement('p');
+  loginDisclaimer.className = loginDisclaimerParaClassName;
+  loginDisclaimer.innerText = 'Sign in to post comments';
+
+  /* Make Login Button  */
+  let loginButton = document.createElement('button');
+  loginButton.className = loginButtonClassName;
+  loginButton.innerHTML = '<a href=\"' + user.loginUrl + '\">Login</a>';
+
+  /* Wrap in a div element */
+  let loginDiv = document.createElement('div');
+  loginDiv.className = loginDivClassName;
+  loginDiv.appendChild(loginDisclaimer);
+  loginDiv.appendChild(loginButton);
+
+  /* Append form to comment div */
+  document.querySelector('div.' + commentDivClassName)
+          .appendChild(loginDiv);
+}
+
+/*
+ * Functions to be called after
+ * the window has loaded
+ */
+window.onload = () => {
+  getComments();
+  loadCommentForm();
 }
